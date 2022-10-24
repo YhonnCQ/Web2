@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.ClassProducto>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <center>
+            <h1>
+                Listar Categoria
+            </h1>
+            <br />
+            <table>
+                <tr>
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        Nombre
+                    </td>
+                    <td>
+                        Stock
+                    </td>
+                    <td>
+                        Porcenjate
+                    </td>
+                </tr>
+                @{
+                    double total = Model.Sum(x => x.Cantidad);
+                }
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>
+                            @c.Id
+                        </td>
+                        <td>
+                            @c.Nombre
+                        </td>
+                        <td>
+                            @c.Cantidad
+                        </td>
+                        <td>
+                            @(Math.Round(100 * c.Cantidad / total, 2))
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                    
+                    </td>
+                    <td>
+                        Total
+                    </td>
+                    <td>
+                        @total
+                    </td>
+                    <td>
+                        @(100*total/total)
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+</html>

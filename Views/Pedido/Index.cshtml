@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.ClassPedido>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Cliente
+            </td>
+            <td>
+                Fecha
+            </td>
+            <td>
+                Monto
+            </td>
+        </tr>
+        @{
+            int total = Model.Sum(x => x.monto);
+        }
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>
+                    @c.Id
+                </td>
+                <td>
+                    @c.Cliente
+                </td>
+                <td>
+                    @c.fecha
+                </td>
+                <td>
+                   @c.monto
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+              
+            </td>
+            <td>
+           
+            </td>
+            <td>
+               Monto Total
+            </td>
+            <td>
+                @total
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.PRODUCTO>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <center>
+            <h1>
+                Listar Categoria
+            </h1>
+            <br />
+            <table>
+                <tr>
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        Categoria
+                    </td>
+                    <td>
+                        Producto
+                    </td>
+                    <td>
+                        Precio
+                    </td>
+                    <td>
+                        Stock
+                    </td>
+                    <td>
+                        Estado
+                    </td>
+                </tr>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>
+                            @c.IDPRODUCTO
+                        </td>
+                        <td>
+                            @c.IDCATEGORIA
+                        </td>
+                        <td>
+                            @c.NOMBRE
+                        </td>
+                        <td>
+                            @c.PRECIO
+                        </td>
+                        <td>
+                            @c.STOCK
+                        </td>
+                        <td>
+                            @c.ESTADO
+                        </td>
+                    </tr>
+                }
+            </table>
+        </center>
+    </div>
+</body>
+</html>

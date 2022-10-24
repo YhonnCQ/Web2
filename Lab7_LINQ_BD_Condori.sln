@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab7_LINQ_BD_Condori", "Lab7_LINQ_BD_Condori.csproj", "{CA91CA1D-DCDD-4F25-A883-F30221A92DEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA91CA1D-DCDD-4F25-A883-F30221A92DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA91CA1D-DCDD-4F25-A883-F30221A92DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA91CA1D-DCDD-4F25-A883-F30221A92DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA91CA1D-DCDD-4F25-A883-F30221A92DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53F3FBFA-2C9F-4D9A-B595-343CC29EFD7F}
+	EndGlobalSection
+EndGlobal

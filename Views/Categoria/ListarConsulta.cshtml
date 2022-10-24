@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.CATEGORIA>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListarConsulta</title>
+</head>
+<body>
+    <div>
+        <center>
+            <h1>
+                Listar Consulta Categoria
+            </h1>
+            <br />
+            <table>
+                <tr>
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        Categoria
+                    </td>
+                    <td>
+                        Descripcion
+                    </td>
+                    <td>
+                        Estado
+                    </td>
+                </tr>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>
+                            @c.IDCATEGORIA
+                        </td>
+                        <td>
+                            @c.NOMBRE
+                        </td>
+                        <td>
+                            @c.DESCRIPCION
+                        </td>
+                        <td>
+                            @c.ESTADO
+                        </td>
+                    </tr>
+                }
+            </table>
+        </center>
+    </div>
+</body>
+</html>

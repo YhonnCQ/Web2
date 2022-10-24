@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.PRODUCTO>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <center>
+        <h1>
+            Listar Productos
+        </h1>
+        <br />
+        <label>Ingrese Termino de Busqueda: </label>
+        @using (Html.BeginForm("BuscarProductoXCategoria", "Producto", FormMethod.Post))
+        {
+            <label>Ingrese Termino de Busqueda:</label>
+            @Html.Editor("Buscar")
+            <br/>
+            <input type="submit" value="Buscar"/>
+        }
+        <table>
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    Categoria
+                </td>
+                <td>
+                    Producto
+                </td>
+                <td>
+                    Precio
+                </td>
+                <td>
+                    Stock
+                </td>
+                <td>
+                    Estado
+                </td>
+            </tr>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>
+                        @c.IDPRODUCTO
+                    </td>
+                    <td>
+                        @c.IDCATEGORIA
+                    </td>
+                    <td>
+                        @c.NOMBRE
+                    </td>
+                    <td>
+                        @c.PRECIO
+                    </td>
+                    <td>
+                        @c.STOCK
+                    </td>
+                    <td>
+                        @c.ESTADO
+                    </td>
+                </tr>
+            }
+        </table>
+    </center>
+</div>
+</body>
+</html>
