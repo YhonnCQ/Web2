@@ -10,5 +10,7 @@ namespace Lab7_LINQ_BD_Condori.Models
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Cantidad { get; set; }
+        public double Porcentaje { get; set; }
+        public int Total { get; set; }
     }
 }

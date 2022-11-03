@@ -116,6 +116,7 @@
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\PEDIDO.cs" />
     <Compile Include="Models\PRODUCTO.cs" />
+    <Compile Include="Models\ProductoViewModel.cs" />
     <Compile Include="Models\USUARIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

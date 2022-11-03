@@ -9,6 +9,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -31,12 +36,17 @@
                     <td>
                         Porcenjate
                     </td>
+                    <td>
+                        Grafico
+                    </td>
                 </tr>
                 @{
-                    double total = Model.Sum(x => x.Cantidad);
+                    int total = 0;
+                    double totalP = 0;
                 }
                 @foreach (var c in Model)
                 {
+                    total = c.Total;
                     <tr>
                         <td>
                             @c.Id
@@ -46,9 +56,14 @@
                         </td>
                         <td>
                             @c.Cantidad
+                         
                         </td>
                         <td>
-                            @(Math.Round(100 * c.Cantidad / total, 2))
+                            @Math.Round(c.Porcentaje, 2)
+                            @{ totalP += Math.Round(c.Porcentaje, 2); }
+                        </td>
+                        <td>
+                            <progress value="@c.Cantidad" max="@c.Total"></progress>
                         </td>
                     </tr>
                 }
@@ -63,7 +78,10 @@
                         @total
                     </td>
                     <td>
-                        @(100*total/total)
+                        @totalP
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
             </table>

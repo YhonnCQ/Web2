@@ -60,14 +60,23 @@ namespace Lab7_LINQ_BD_Condori.Models
 
             return productos;
         }
-        public List<PRODUCTO> ListarProductosPorCategoria()
+        public List<ProductoViewModel> ListarProductosPorCategoria()
         {
-            var productos = new List<PRODUCTO>();
+            var productos = new List<ProductoViewModel>();
             try
             {
                 using (var db = new Model())
                 {
-                    productos = db.PRODUCTOes.Include("CATEGORIA").ToList();
+                    productos = db.PRODUCTOes.Include("CATEGORIA").Select(
+                        x => new ProductoViewModel()
+                        {
+                            Id = x.IDPRODUCTO,
+                            CategoriaNombre = x.CATEGORIA.NOMBRE,
+                            Nombre = x.NOMBRE,
+                            Precio = x.PRECIO,
+                            Stock = x.STOCK,
+                            Estado = x.STOCK == 0 ? "AGOTADO" : x.STOCK <= 10 ? "POR AGOTARSE" : "DISPONIBLE"
+                        }).ToList();
                 }
             }
             catch (Exception e)
@@ -79,14 +88,23 @@ namespace Lab7_LINQ_BD_Condori.Models
             return productos;
         }
 
-        public List<PRODUCTO> BuscarProductosPorCategoria(String Buscar)
+        public List<ProductoViewModel> BuscarProductosPorCategoria(string Buscar)
         {
-            var productos = new List<PRODUCTO>();
+            var productos = new List<ProductoViewModel>();
             try
             {
                 using (var db = new Model())
                 {
-                    productos = db.PRODUCTOes.Include("CATEGORIA").Where(x => x.NOMBRE.Contains(Buscar) || x.CATEGORIA.NOMBRE.Equals(Buscar)).ToList();
+                    productos = db.PRODUCTOes.Include("CATEGORIA").Where(x => x.CATEGORIA.NOMBRE.Contains(Buscar) ).Select(
+                        x => new ProductoViewModel()
+                        {
+                            Id = x.IDPRODUCTO,
+                            CategoriaNombre = x.CATEGORIA.NOMBRE,
+                            Nombre = x.NOMBRE,
+                            Precio = x.PRECIO,
+                            Stock = x.STOCK,
+                            Estado = x.STOCK == 0 ? "AGOTADO" : x.STOCK <= 10 ? "POR AGOTARSE" : "DISPONIBLE"
+                        }).ToList();
                 }
             }
             catch (Exception e)
@@ -110,7 +128,9 @@ namespace Lab7_LINQ_BD_Condori.Models
                     {
                         Id = x.Key,
                         Nombre = x.FirstOrDefault().CATEGORIA.NOMBRE,
-                        Cantidad = x.Count()
+                        Cantidad = x.Count(),
+                        Porcentaje = (double) x.Count() * 100 / db.PRODUCTOes.Count(),
+                        Total = db.PRODUCTOes.Count()
                     }).ToList();
                 }
             }
@@ -122,6 +142,7 @@ namespace Lab7_LINQ_BD_Condori.Models
 
             return productos;
         }
+
 
     }
 }

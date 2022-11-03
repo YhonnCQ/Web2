@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Lab7_LINQ_BD_Condori.Models.PRODUCTO>
+﻿
+@using Lab7_LINQ_BD_Condori.Models
+@model List<Lab7_LINQ_BD_Condori.Models.ProductoViewModel>
 @{
     Layout = null;
 }
@@ -9,6 +11,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -17,6 +24,17 @@
             Listar Categoria
         </h1>
         <br />
+        @using (Html.BeginForm("ListarProductoXCategoria", "Producto", FormMethod.Post))
+        {
+            <label>Ingrese Termino de Busqueda:</label>
+            @Html.Editor("Buscar")
+            <br />
+            <input type="radio" name="tipoBusqueda" value="CATEGORIA"> <label>CATEGORIA</label>
+            <input type="radio" name="tipoBusqueda" value="PRODUCTO"> <label>PRODUCTO</label>
+            <input type="radio" name="tipoBusqueda" value="STOCK"> <label>STOCK</label>
+            <input type="submit" value="Buscar" />
+        }
+
         <table>
             <tr>
                 <td>
@@ -38,26 +56,33 @@
                     Estado
                 </td>
             </tr>
+            @{
+                string nombre = "";
+            }
             @foreach (var c in Model)
             {
                 <tr>
                     <td>
-                        @c.IDPRODUCTO
+                        @c.Id
+                    </td>
+                    @if (nombre != c.CategoriaNombre)
+                    {
+                        <td rowspan="@(new PRODUCTO().BuscarProductosPorCategoria(c.CategoriaNombre).Count)">
+                            @c.CategoriaNombre
+                        </td>
+                        nombre = c.CategoriaNombre;
+                    }
+                    <td>
+                        @c.Nombre
                     </td>
                     <td>
-                        @c.CATEGORIA.NOMBRE
+                        @c.Precio
                     </td>
                     <td>
-                        @c.NOMBRE
+                        @c.Stock
                     </td>
                     <td>
-                        @c.PRECIO
-                    </td>
-                    <td>
-                        @c.STOCK
-                    </td>
-                    <td>
-                        @c.ESTADO
+                        @c.Estado
                     </td>
                 </tr>
             }
